@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-deplyment
+spec:
+  replicas: 3
+  selectors:
+    matchLables:
+      app: ex1
+  template:
+    metadata:
+      lables:
+        app: ex1
+    spec:
+      containers:
+        - name: nginx-container1
+          image: nginx
+          ports:
+            - containerPort: 80
+              hostPort: 80
+              protocol: TCP
+# Create a Deployment:-
+# Deploy an application of your choice using a Deployment manifest.
+# Define the desired number of replicas and other necessary configurations.
+# Verify that the Deployment and its associated Pods are running successfully.
+
+# kubectl apply -f deployment.yaml
+# kubectl get deployments
+# kubectl get pods
+
