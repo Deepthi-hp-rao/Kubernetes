@@ -4,27 +4,50 @@ metadata:
   name: example-deplyment
 spec:
   replicas: 3
-  selectors:
-    matchLables:
+  selector:
+    matchLabels:
       app: ex1
   template:
     metadata:
-      lables:
+      labels:
         app: ex1
     spec:
       containers:
-        - name: nginx-container1
-          image: nginx
+        - name: nginx
+          image: nginx:1.25.0
           ports:
             - containerPort: 80
-              hostPort: 80
-              protocol: TCP
-# Create a Deployment:-
-# Deploy an application of your choice using a Deployment manifest.
-# Define the desired number of replicas and other necessary configurations.
-# Verify that the Deployment and its associated Pods are running successfully.
+# 1)Create a Deployment:-
+#   Deploy an application of your choice using a Deployment manifest.
+#   Define the desired number of replicas and other necessary configurations.
+#   Verify that the Deployment and its associated Pods are running successfully.
 
 # kubectl apply -f deployment.yaml
 # kubectl get deployments
 # kubectl get pods
 
+# 2)Scale the Deployment:
+#   Update the Deployment manifest to increase the number of replicas.
+#   Apply the updated manifest to scale up the application.
+#   Verify that additional Pods are created and the application is effectively scaled.
+
+# kubectl scale deployment example-deplyment --replicas=4(or we can update in deployment.yaml file)
+
+# 4)Perform a Rolling Update:
+#   Make a change to the application code or container image.
+#   Update the Deployment with the new version.
+#   Observe the rolling update process and ensure that the application is updated without downtime.
+
+# 3)Rollback an appliacation
+#   kubectl rollout history deployment/example-deplyment
+#   kubectl rollout history deployment/example-deplyment --revision=1
+#   kubectl rollout undo deployment example-deplyment --to-revision=1
+
+# 4)Clean Up:
+#   Delete the Deployment and associated resources ( Pods) once you have completed the testing.
+#   Ensure that all resources are properly cleaned up to avoid unnecessary resource consumption.
+
+# kubectl delete deployment example-deplyment
+# kubectl get deployment
+# kubectl get pods
+# kubectl get rs
