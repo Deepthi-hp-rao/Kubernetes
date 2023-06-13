@@ -5,6 +5,6 @@ metadata:
 spec:
   containers:
     - name: my-html-container
-      image: my-html-page
+      image: deepthihp2/my-html-page
       ports:
         - containerPort: 80
