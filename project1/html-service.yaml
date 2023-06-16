@@ -3,7 +3,7 @@ kind: Service
 metadata:
   name: my-html-service
 spec:
-  type: NodePort
+  type: LoadBalancer
   selector:
     app: my-html-pod
   ports:
